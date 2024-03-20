@@ -1,23 +1,37 @@
 # Server function
 server <- function(input, output, session) {
+  # Reactive variable to store the original file content
+  originalFileContent <- reactiveVal()
+  
   # Observe file upload
   observeEvent(input$file1, {
     req(input$file1)
     # Read the file content
     fileContent <- readLines(input$file1$datapath)
-    
-    # Modify the file content based on the user's selections
-    fileContent <- gsub("title: .*", paste0("title: ", input$title), fileContent)
-    fileContent <- gsub("author: .*", paste0("author: ", input$author), fileContent)
-    fileContent <- gsub("date: .*", paste0("date: ", if(input$date_type == 'custom') {input$date} else {'"`r Sys.Date()`"'}), fileContent)
-    fileContent <- gsub("description: .*", paste0("description: ", input$description), fileContent)
-    fileContent <- gsub("highlight-style: .*", paste0("highlight-style: ", input$highlight_style), fileContent)
-    fileContent <- gsub("theme: .*", paste0("theme: ", input$theme), fileContent)
-    fileContent <- gsub("toc: .*", paste0("toc: ", ifelse(input$toc, "true", "false")), fileContent)
-    
-    # Update Ace editor with modified file content
+    # Store the original file content
+    originalFileContent(fileContent)
+    # Update Ace editor with file content
     updateAceEditor(session, "code", value = paste(fileContent, collapse = "\n"))
   })
+  
+  # Function to generate YAML header
+  generate_yaml <- function() {
+    c(
+      "---",
+      paste0("author: ", input$author),
+      paste0("date: ", if(input$date_type == 'custom') {input$date} else {'"`r Sys.Date()`"'}),
+      paste0("description: ", input$description),
+      "format:",
+      "  html:",
+      paste0("    highlight-style: ", input$highlight_style),
+      paste0("    theme: ", input$theme),
+      paste0("    toc: ", ifelse(input$toc, "true", "false")),
+      "    code-fold: true",
+      paste0("    file: ", tools::file_path_sans_ext(input$file1$name), ".qmd"),
+      paste0("    title: ", input$title),
+      "---"
+    )
+  }
   
   # Download handler
   output$Download <- downloadHandler(
@@ -25,7 +39,12 @@ server <- function(input, output, session) {
       paste(tools::file_path_sans_ext(input$file1$name), ".", input$format, sep = "")
     },
     content = function(file) {
-      writeLines(input$code, file)
+      # Generate YAML header
+      yaml_header <- generate_yaml()
+      # Combine YAML header and original file content
+      new_fileContent <- c(yaml_header, originalFileContent())
+      # Write the new file content to the file
+      writeLines(new_fileContent, file)
     }
   )
 }

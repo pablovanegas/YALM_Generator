@@ -1,3 +1,5 @@
+library(shiny)
+library(shinyAce)
 ui <- fluidPage(
   titlePanel("QMD RMARKDOWN HEADER GENERATOR"),
   
@@ -60,7 +62,7 @@ ui <- fluidPage(
       
       p("GitHub:", "🚀", a(href = "https://github.com/pablovanegas", "GitHubProfile",target = "_blank")),
       p(" "),
-      p("Your Output: "),
+      p("Your Input: "),
       tableOutput("contents"),
       
       fluidRow(

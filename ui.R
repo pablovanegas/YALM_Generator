@@ -6,7 +6,7 @@ ui <- fluidPage(
   sidebarLayout(
     
     sidebarPanel(
-      img(src="unal.png", height=100, width=160),
+      img(src="portada.png", height=200, width=200),
       textInput('title', 'Title'),
       textInput('author', 'Author'),
       radioButtons('date_type', 'Date', 

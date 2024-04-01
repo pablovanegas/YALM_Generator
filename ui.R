@@ -28,7 +28,7 @@ ui <- fluidPage(
                          'text/comma-separated-values,text/plain',
                          '.csv', '.qmd', '.md')), # End of file input
       radioButtons('format', 'Document format', 
-                   choices = c('qmd', 'md', 'pdf', 'html', 'docx')),
+                   choices = c('qmd', 'md')),
       downloadButton('Download', 'Download Document'),
     ), # End of sidebar panel
     

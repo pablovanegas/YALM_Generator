@@ -1,4 +1,3 @@
-# Server function
 server <- function(input, output, session) {
   # Reactive variable to store the original file content
   originalFileContent <- reactiveVal()
@@ -11,7 +10,7 @@ server <- function(input, output, session) {
     # Store the original file content
     originalFileContent(fileContent)
     # Update Ace editor with file content
-    updateAceEditor(session, "code", value = paste(fileContent, collapse = "\n"))
+    updateAceEditor(session, "code", value = paste(fileContent, collapse = "\n"), theme = "monokai")
   })
   
   # Function to generate YAML header
@@ -29,12 +28,24 @@ server <- function(input, output, session) {
       "    code-fold: true",
       paste0("    file: ", tools::file_path_sans_ext(input$file1$name), ".qmd"),
       paste0("    title: ", input$title),
+      paste0('    subtitle: "', input$subtitle, '"'),
       "---"
     )
   }
   
+  # Observe generate button
+  observeEvent(input$generate, {
+    # Generate YAML header
+    yaml_header <- generate_yaml()
+    # Combine YAML header and original file content
+    new_fileContent <- c(yaml_header, originalFileContent())
+    # Update Ace editor with new file content
+    updateAceEditor(session, "code", value = paste(new_fileContent, collapse = "\n"))
+  })
+  
   # Download handler
   output$Download <- downloadHandler(
+    
     filename = function() {
       paste(tools::file_path_sans_ext(input$file1$name), ".", input$format, sep = "")
     },

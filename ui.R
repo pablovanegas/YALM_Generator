@@ -1,6 +1,13 @@
+
 library(shiny)
 library(shinyAce)
+library(shinythemes)
 ui <- fluidPage(
+  #shinythemes::themeSelector(),
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
+    tags$script(src = "script.js")
+  ),
   titlePanel("QMD RMARKDOWN HEADER GENERATOR"),
   
   sidebarLayout(
@@ -8,6 +15,7 @@ ui <- fluidPage(
     sidebarPanel(
       img(src="portada.png", height=200, width=200),
       textInput('title', 'Title'),
+      textInput('subtitle', 'Subtitle'),
       textInput('author', 'Author'),
       radioButtons('date_type', 'Date', 
                    choices = c('Use system date' = '`r Sys.Date()`', 'Enter a date' = 'custom')),
@@ -30,15 +38,17 @@ ui <- fluidPage(
       radioButtons('format', 'Document format', 
                    choices = c('qmd', 'md')),
       downloadButton('Download', 'Download Document'),
+      actionButton('generate', 'Generate YAML Header'),
+      actionButton('link_markdown', 'Markdown Generator')
     ), # End of sidebar panel
     
     mainPanel(
       h1("Make your qmd, Rmarkdown better"),
       h2("This is a simple  app to help you create qmd, Rmarkdown documents"),
       p("Insert your qmd, Rmarkdown content in the editor and click the run button to see the output"),
-      # User Guide
-      tags$div(
-        h2("User Guide"),
+      # User Guide #generate the .col-sm-8 class 
+      tags$div( 
+        h2("User Guide", class = 'guide-title'), 
         p("Welcome to the QMD RMarkdown Header Generator! This application helps you create QMD and RMarkdown documents with ease. Follow these simple steps to get started:"),
         tags$ol(
           tags$li("Delete the Default YAML Header: The application starts with a default YAML header. Make sure to delete this before you begin."),
@@ -58,16 +68,14 @@ ui <- fluidPage(
       
       img(src = "guia.png", height = 300, width = 1000, align = "center"),
       br(),
-      p("☕️ Support me:", a(href="https://www.buymeacoffee.com/juvanegas", "Buymeacoffe", target="_blank")),
-      
-      p("GitHub:", "🚀", a(href = "https://github.com/pablovanegas", "GitHubProfile",target = "_blank")),
+      p("Source code:", "🚀", a(href = "https://github.com/pablovanegas/YALM_Generator", "Code",target = "_blank")),
       p(" "),
-      p("Your Input: "),
+      p("Your YALM : "),
       tableOutput("contents"),
       
       fluidRow(
         column(12, wellPanel(
-          aceEditor('code', mode = 'r', theme = 'twilight', fontSize = 12, height = '400px')
+          aceEditor('code', mode = 'r', theme = 'chaos', fontSize = 12, height = '400px')
         ))
       ) # End of fluid row
       

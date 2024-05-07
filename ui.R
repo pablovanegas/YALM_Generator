@@ -39,7 +39,8 @@ ui <- fluidPage(
                    choices = c('qmd', 'md')),
       downloadButton('Download', 'Download Document'),
       actionButton('generate', 'Generate YAML Header'),
-      actionButton('link_markdown', 'Markdown Generator')
+      tags$a(href = "https://github.com/pablovanegas/runr", target = "_blank", class = "btn btn-default shiny-bound-input", "Ver Código Fuente"),
+      tags$a(href = "https://juan-pablo-vanegas-moreno.shinyapps.io/runr/", target = "_blank", class = "btn btn-default shiny-bound-input", "markdown generator") 
     ), # End of sidebar panel
     
     mainPanel(

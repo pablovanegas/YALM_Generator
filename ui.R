@@ -8,7 +8,7 @@ ui <- fluidPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
     tags$script(src = "script.js")
   ),
-  titlePanel("QMD RMARKDOWN HEADER GENERATOR"),
+  titlePanel("HEADER GENERATOR"),
   
   sidebarLayout(
     
@@ -28,48 +28,46 @@ ui <- fluidPage(
                   choices = c('default', 'github', 'tango', 'pygments', 'kate', 'monochrome', 'espresso', 'zenburn', 'haddock')),
       selectInput('theme', 'Choose theme', 
                   choices = c('cerulean', 'journal', 'flatly', 'darkly', 'readable', 'spacelab', 'united', 'cosmo', 'lumen', 'paper', 'sandstone', 'simplex', 'yeti')),
-      checkboxInput('toc', 'Table of Contents', value = TRUE),
-      checkboxInput('code-fold', 'Code fold', value = TRUE),
+      checkboxInput('toc', 'Table of Contents', value = FALSE),
+      checkboxInput('code-fold', 'Code fold', value = FALSE),
+      checkboxInput('toc-float', 'Table of Contents Float', value = FALSE),
+      conditionalPanel(
+        condition = "input['toc-float'] == true",
+        checkboxInput('collapsed', 'Collapsed', value = TRUE),
+        checkboxInput('smooth_scroll', 'Smooth Scroll', value = TRUE)
+      ),
+  
       helpText(),
       fileInput('file1', 'Choose qmd or Markdown File',
                 accept=c('text/qmd', 'text/markdown',
                          'text/comma-separated-values,text/plain',
                          '.csv', '.qmd', '.md')), # End of file input
-      radioButtons('format', 'Document format', 
-                   choices = c('qmd', 'md')),
       downloadButton('Download', 'Download Document'),
       actionButton('generate', 'Generate YAML Header'),
       tags$a(href = "https://github.com/pablovanegas/runr", target = "_blank", class = "btn btn-default shiny-bound-input", "Ver Código Fuente"),
-      tags$a(href = "https://juan-pablo-vanegas-moreno.shinyapps.io/runr/", target = "_blank", class = "btn btn-default shiny-bound-input", "markdown generator") 
+      tags$a(href = "https://huggingface.co/spaces/pajuan/bbbb", target = "_blank", class = "btn btn-default shiny-bound-input", "Markdown generator") 
     ), # End of sidebar panel
     
     mainPanel(
-      h1("Make your qmd, Rmarkdown better"),
-      h2("This is a simple  app to help you create qmd, Rmarkdown documents"),
-      p("Insert your qmd, Rmarkdown content in the editor and click the run button to see the output"),
+      h2("This is an app to help you create YALM headers for your documents"),
       # User Guide #generate the .col-sm-8 class 
       tags$div( 
         h2("User Guide", class = 'guide-title'), 
-        p("Welcome to the QMD RMarkdown Header Generator! This application helps you create QMD and RMarkdown documents with ease. Follow these simple steps to get started:"),
         tags$ol(
-          tags$li("Delete the Default YAML Header: The application starts with a default YAML header. Make sure to delete this before you begin."),
-          tags$li("Insert Your Own Header: Enter your own title, author, and description in the respective text input fields on the sidebar panel."),
+          tags$li("If you're going to update your document make sure to delete this before you begin."),
+          tags$li("Custom your header: Enter your own title, author, and description in the respective text input fields on the sidebar panel."),
           tags$li("Choose the Date: You have the option to use the system date or enter a custom date. Select your preference using the 'Date' radio buttons."),
           tags$li("Select Highlight Style and Theme: Choose your preferred highlight style and theme from the dropdown menus."),
           tags$li("Table of Contents and Code Fold: If you want a table of contents or code fold in your document, check the respective boxes."),
           tags$li("Upload Your File: Choose the QMD or Markdown file you want to work with using the 'Choose qmd or Markdown File' button."),
-          tags$li("Choose the Document Format: Select the format you want your document to be in (QMD, MD, PDF, HTML, DOCX) using the 'Document format' radio buttons."),
           tags$li("Download Your Document: Once you're done, click the 'Download Document' button to get your document.")
         ),
-        p("Remember, make sure to decide on the parameters before inserting the archive. Enjoy creating your QMD, RMarkdown documents!"),
-        p("Make sure to ", tags$b("DELETE"), " the default YAML header"),
-        
+        p("Remember, make sure to decide on the parameters before inserting the archive or you can generate the header without the file and click on generate YALM"),
       ), # End of User Guide
       
       
       img(src = "guia.png", height = 300, width = 1000, align = "center"),
       br(),
-      p("Source code:", "🚀", a(href = "https://github.com/pablovanegas/YALM_Generator", "Code",target = "_blank")),
       p(" "),
       p("Your YALM : "),
       tableOutput("contents"),

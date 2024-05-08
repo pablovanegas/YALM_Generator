@@ -15,7 +15,7 @@ server <- function(input, output, session) {
   
   # Function to generate YAML header
   generate_yaml <- function() {
-    c(
+    yaml_header <- c(
       "---",
       paste0("author: ", input$author),
       paste0("date: ", if(input$date_type == 'custom') {input$date} else {'"`r Sys.Date()`"'}),
@@ -26,12 +26,23 @@ server <- function(input, output, session) {
       paste0("    theme: ", input$theme),
       paste0("    toc: ", ifelse(input$toc, "true", "false")),
       "    code-fold: true",
-      paste0("    file: ", tools::file_path_sans_ext(input$file1$name), ".qmd"),
+      paste0("    file: ", tools::file_path_sans_ext(input$file1$name), ".", tools::file_ext(input$file1$name)),
       paste0("    title: ", input$title),
-      paste0('    subtitle: "', input$subtitle, '"'),
-      "---"
+      paste0('    subtitle: "', input$subtitle, '"')
     )
+    
+    if (input$`toc-float`) {
+      yaml_header <- c(yaml_header,
+                       "    toc_float:",
+                       "      collapsed: true",
+                       "      smooth_scroll: true")
+    }
+    
+    yaml_header <- c(yaml_header, "---")
+    
+    return(yaml_header)
   }
+  
   
   # Observe generate button
   observeEvent(input$generate, {
@@ -47,7 +58,7 @@ server <- function(input, output, session) {
   output$Download <- downloadHandler(
     
     filename = function() {
-      paste(tools::file_path_sans_ext(input$file1$name), ".", input$format, sep = "")
+      paste(tools::file_path_sans_ext(input$file1$name), ".", tools::file_ext(input$file1$name), sep = "")
     },
     content = function(file) {
       # Generate YAML header

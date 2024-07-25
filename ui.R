@@ -8,7 +8,7 @@ ui <- fluidPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
     tags$script(src = "script.js")
   ),
-  titlePanel("HEADER GENERATOR"),
+  titlePanel("YAMLGen"),
   
   sidebarLayout(
     
@@ -45,7 +45,7 @@ ui <- fluidPage(
       downloadButton('Download', 'Download Document'),
       actionButton('generate', 'Generate YAML Header'),
       tags$a(href = "https://github.com/pablovanegas/runr", target = "_blank", class = "btn btn-default shiny-bound-input", "Ver Código Fuente"),
-      tags$a(href = "https://huggingface.co/spaces/pajuan/bbbb", target = "_blank", class = "btn btn-default shiny-bound-input", "Markdown generator") 
+      #tags$a(href = "https://huggingface.co/spaces/pajuan/bbbb", target = "_blank", class = "btn btn-default shiny-bound-input", "Markdown generator") 
     ), # End of sidebar panel
     
     mainPanel(

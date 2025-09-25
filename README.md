@@ -1,226 +1,136 @@
-# YAMLGen - Advanced YAML Header Generator
+# YALM Generator 🚀
 
-## Description
-**YAMLGen** is a professional Shiny application designed to generate syntactically perfect YAML headers for Quarto (.qmd) and R Markdown (.md) documents. This enhanced version provides real-time preview, robust validation, and comprehensive format support for modern document creation workflows.
+[![Estado del Build](https://img-shields.io/badge/build-passing-brightgreen?style=for-the-badge)](https://github.com)
+[![Licencia: MIT](https://img-shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Versión de R](https://img-shields.io/badge/R-%3E%3D%204.0-blue?style=for-the-badge)](https://www.r-project.org/)
+[![GitHub Stars](https://img-shields.io/github/stars/USUARIO/REPO?style=social)](https://github.com/USUARIO/REPO/stargazers)
 
-## 🚀 Key Features
+![YALM Generator Portada](www/portada.jpg)
 
-### Core Functionality
-- **Real-time YAML Generation**: Instant preview of YAML headers as you configure settings
-- **Syntactic Validation**: Built-in YAML validation with clear error reporting  
-- **Multiple Output Formats**: Support for HTML, PDF, Word, and RevealJS presentations
-- **File Integration**: Upload existing documents and preserve content while updating headers
-- **Professional UI**: Clean, intuitive interface with tabbed navigation
+**YALM Generator** es una aplicación web interactiva desarrollada con **R Shiny** diseñada para simplificar y acelerar la creación de cabeceras YAML para documentos de **Quarto (.qmd)** y **R Markdown (.Rmd)**.
 
-### Format Support
-- **HTML**: Themes, syntax highlighting, TOC options, code folding
-- **PDF**: Multiple engines (pdflatex, xelatex, lualatex), document classes, margins
-- **Word (DOCX)**: Table of contents, reference document support
-- **Presentations (RevealJS)**: Themes, incremental slides, transitions
+---
 
-### Advanced Capabilities
-- **Smart YAML Parsing**: Automatically detect and preserve existing YAML from uploaded files
-- **Content Preservation**: Maintains document content while updating headers
-- **Error Handling**: Comprehensive validation with user-friendly error messages
-- **Export Options**: Generate clean, production-ready documents
+### 📋 Tabla de Contenidos
+1. [Descripción General](#-descripción-general)
+2. [Características Principales](#-características-principales)
+3. [Instalación y Requisitos](#-instalación-y-requisitos)
+4. [Guía de Uso](#-guía-de-uso)
+5. [Análisis Técnico del Proyecto](#-análisis-técnico-del-proyecto)
+6. [Roadmap Futuro](#-roadmap-futuro)
+7. [Cómo Contribuir](#-cómo-contribuir)
+8. [Licencia](#-licencia)
+9. [Autores y Créditos](#-autores-y-créditos)
+10. [Contacto y Soporte](#-contacto-y-soporte)
 
-## 📋 Requirements
+---
 
-### R Packages
-```r
-# Core packages
-library(shiny)        # Shiny web framework
-library(shinyAce)     # Code editor integration
-library(yaml)         # YAML parsing and generation
-library(DT)           # Data table display
+### 🎯 Descripción General
 
-# Optional packages for enhanced functionality
-library(rmarkdown)    # Document rendering
-library(knitr)        # Dynamic report generation
-```
+El objetivo principal de esta herramienta es eliminar la necesidad de memorizar la compleja sintaxis de YAML y reducir los errores comunes de formato. Con una interfaz gráfica intuitiva, los usuarios pueden configurar metadatos, formatos de salida y opciones de ejecución, generando en tiempo real una cabecera YAML válida y lista para usar, permitiéndoles centrarse exclusivamente en el contenido de sus documentos.
 
-### System Requirements
-- R version 4.0 or higher
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- RStudio (recommended for development)
+### ✨ Características Principales
 
-## 🏃‍♂️ Quick Start
+-   **Interfaz Gráfica Intuitiva**: Diseño limpio y organizado en paneles colapsables que facilita la navegación.
+-   **Generación en Tiempo Real**: Visualiza la cabecera YAML mientras modificas los parámetros en la interfaz.
+-   **Validación Automática**: El sistema verifica la sintaxis del YAML generado y notifica sobre posibles errores.
+-   **Soporte Multiformato**: Configura opciones específicas para `HTML`, `PDF`, `Word (docx)` y `Presentaciones (revealjs)`.
+-   **Integración con Archivos Existentes**: Carga tus documentos `.qmd`, `.md` o `.Rmd`. La aplicación extraerá el YAML existente para que puedas editarlo y conservará el contenido del cuerpo.
+-   **Opciones de Ejecución Globales**: Controla el comportamiento de los bloques de código (`echo`, `eval`, `warning`, `error`) de forma centralizada.
+-   **Descarga Directa**: Obtén el documento `.qmd` completo, con la nueva cabecera YAML y el contenido original, listo para renderizar.
 
-### Option 1: Direct Launch
-```r
-# From R console or RStudio
-shiny::runApp()
-```
+### 📦 Instalación y Requisitos
 
-### Option 2: Using the provided script
-```r
-# Run the test script
-source("run_app.R")
-```
+#### Requisitos Previos
+-   **R**: Versión 4.0 o superior.
+-   **Navegador Web Moderno**: Chrome, Firefox, Safari, Edge.
+-   **RStudio (Recomendado)**: Para una mejor experiencia de desarrollo y ejecución.
 
-### Option 3: RStudio Integration
-1. Open the project file `YALM_Generator.Rproj` in RStudio
-2. Click "Run App" in the Source pane
-3. Application will launch in RStudio Viewer or external browser
+#### Pasos de Instalación
+1.  Clona o descarga este repositorio en tu máquina local.
+    ```bash
+    git clone [https://github.com/USUARIO/REPO.git](https://github.com/USUARIO/REPO.git)
+    ```
+2.  Abre R o RStudio y establece el directorio de trabajo en la carpeta del proyecto.
+3.  Instala las dependencias necesarias ejecutando el siguiente comando en la consola de R:
+    ```r
+    install.packages(c("shiny", "shinyjs", "yaml", "bslib"))
+    ```
+4.  ¡Listo! Ya puedes ejecutar la aplicación.
 
-## 📖 User Guide
+### 🚀 Guía de Uso
 
-### Basic Workflow
-1. **Configure Document Metadata**
-   - Enter title, subtitle, author information
-   - Choose date format (system date or custom)
-   - Add description (optional)
+#### Iniciar la Aplicación
+Puedes iniciar la aplicación de dos maneras:
+1.  **Desde la consola de R** (asegúrate de estar en el directorio raíz del proyecto):
+    ```r
+    shiny::runApp()
+    ```
+2.  **Usando RStudio**:
+    * Abre el archivo `app.R`.
+    * Haz clic en el botón **"Run App"** que aparece en la parte superior del editor.
 
-2. **Select Output Format**
-   - Choose from HTML, PDF, Word, or Presentation
-   - Configure format-specific options
+#### Flujo de Trabajo
+1.  **Paso 1: Metadatos**: Completa los campos básicos como título, autor y fecha.
+2.  **Paso 2: Formato**: Selecciona el formato de salida (`html`, `pdf`, etc.) y ajusta las opciones específicas.
+3.  **Previsualiza el YAML**: En la pestaña **"YAML Preview"**, puedes ver el código generado en tiempo real y copiarlo.
+    ![Previsualización de YAML](www/guia.png)
+4.  **Paso 3: Carga y Descarga (Opcional)**:
+    * Usa el botón **"Upload Document"** para cargar un archivo existente. Los campos se rellenarán automáticamente.
+    * Cuando termines, haz clic en **"Download Document"** para guardar un archivo `.qmd` que combina la nueva cabecera y tu contenido.
 
-3. **Preview YAML**
-   - View real-time YAML generation in the "YAML Preview" tab
-   - Check validation status for syntax errors
+### 🛠️ Análisis Técnico del Proyecto
 
-4. **Upload File (Optional)**
-   - Upload existing .qmd, .md, or .Rmd files
-   - Existing YAML will be detected and form fields populated
-   - Content is preserved and editable
+#### Estructura de Directorios
 
-5. **Download Document**
-   - Generate final document with YAML header
-   - Content is combined automatically
+YALM_Generator/
+├── app.R                 # Aplicación principal de Shiny
+├── modules/              # Módulos de Shiny
+│   ├── doc_actions_module.R
+│   └── fileUploadUI.R
+└── www/                  # Recursos estáticos (assets)
+├── styles.css
+├── portada.jpg
+└── ...
+#### Arquitectura y Componentes
+* **Aplicación Principal (`app.R`)**: Contiene el framework de la aplicación Shiny, utilizando `bslib` para una UI moderna. Implementa la lógica central para la generación y validación de YAML.
+* **Estructura Modular (`/modules`)**:
+    * `fileUploadUI.R`: Gestiona la carga de documentos.
+    * `doc_actions_module.R`: Maneja las acciones de usuario como "descargar" o "limpiar formulario".
+* **Recursos Web (`/www`)**: Define un tema oscuro profesional con `styles.css` para mejorar la legibilidad.
 
-### Format-Specific Options
+### 🗺️ Roadmap Futuro
+-   [ ] **Guardar Plantillas**: Permitir a los usuarios guardar y cargar configuraciones de YAML frecuentes.
+-   [ ] **Soporte para más Formatos**: Añadir configuraciones para `beamer`, `bookdown`, etc.
+-   [ ] **Mejoras en la UI/UX**: Incorporar un editor de texto para el cuerpo del documento directamente en la app.
+-   [ ] **Internacionalización**: Soporte para múltiples idiomas en la interfaz.
 
-#### HTML Documents
-- **Themes**: Bootstrap-based themes (cerulean, journal, flatly, etc.)
-- **Syntax Highlighting**: Code syntax highlighting styles
-- **Table of Contents**: Static or floating TOC with customization
-- **Code Folding**: Hide/show code blocks in output
+### 🤝 Cómo Contribuir
 
-#### PDF Documents  
-- **PDF Engine**: Choose between pdflatex, xelatex, or lualatex
-- **Document Class**: article, report, or book layouts
-- **Margins**: Customizable page margins
-- **Bibliography**: Citation and reference support
+¡Las contribuciones son bienvenidas! Si deseas mejorar YALM Generator, por favor sigue estos pasos:
+1.  **Haz un Fork** del repositorio.
+2.  **Crea una nueva Rama**: `git checkout -b feature/nueva-funcionalidad`.
+3.  **Realiza tus Cambios** y asegúrate de que el código esté bien documentado.
+4.  **Envía un Pull Request** con una descripción clara de tus aportes.
 
-#### Word Documents
-- **Table of Contents**: Automatic TOC generation
-- **Reference Document**: Use custom .docx templates
-- **Styling**: Professional formatting options
+Para reportar errores o sugerir nuevas características, por favor crea un **Issue** en el repositorio.
 
-#### Presentations (RevealJS)
-- **Themes**: Professional presentation themes
-- **Incremental**: Progressive slide reveals
-- **Transitions**: Slide transition effects
+### 📄 Licencia
 
-## 🛠️ Technical Architecture
+Este proyecto está distribuido bajo la **Licencia MIT**. Consulta el archivo `LICENSE` para más detalles.
 
-### Modular Design
-The application follows a modular architecture with clear separation of concerns:
+### 👨‍💻 Autores y Créditos
 
-```
-├── global.R              # Global configuration and utility functions
-├── ui.R                  # User interface definition  
-├── server.R              # Server logic and reactive programming
-├── modules/              # Reusable Shiny modules
-│   ├── yaml_generator_module.R    # YAML generation logic
-│   └── file_input_module.R        # File handling module
-└── www/                  # Static web assets
-    ├── styles.css        # Custom CSS styling
-    ├── portada.png       # Logo and branding
-    └── guia.png          # User guide images
-```
+Este proyecto fue desarrollado como una herramienta para la comunidad de R y Quarto.
 
-### Key Components
+-   **Tecnologías Clave**:
+    -   [Shiny](https://shiny.rstudio.com/): Framework para aplicaciones web en R.
+    -   [yaml](https://cran.r-project.org/package=yaml): Para el parseo y generación de YAML.
+    -   [bslib](https://rstudio.github.io/bslib/): Para la creación de temas modernos.
+    -   [shinyjs](https://deanattali.com/shinyjs/): Para ejecutar código JavaScript personalizado.
 
-#### YAML Generation Engine
-- **Reactive Programming**: Real-time updates using Shiny reactivity
-- **Validation**: Built-in YAML syntax checking with `yaml` package
-- **Format Abstraction**: Modular format configuration system
+![Logo UNAL](www/unal.png)
 
-#### File Processing
-- **Smart Upload**: Automatic file type detection and validation
-- **YAML Extraction**: Parse existing YAML headers from documents
-- **Content Preservation**: Maintain document content during header updates
+### 🆘 Contacto y Soporte
 
-#### Error Handling
-- **Graceful Degradation**: Continue operation even with invalid inputs
-- **User Feedback**: Clear error messages and validation status
-- **Logging**: Comprehensive error tracking for debugging
-
-## 🔧 Customization
-
-### Adding New Output Formats
-To add support for additional output formats:
-
-1. **Update UI Options**: Add new format choice in `selectInput('output_format')`
-2. **Create Format Configuration**: Add format-specific options in `conditionalPanel`
-3. **Implement Server Logic**: Add format handling in `build_format_config()`
-4. **Test Integration**: Verify YAML generation and validation
-
-### Extending YAML Features
-The modular design allows easy extension of YAML capabilities:
-
-```r
-# Example: Adding custom metadata fields
-custom_metadata <- list(
-  keywords = input$keywords,
-  category = input$category,
-  license = input$license
-)
-
-yaml_list <- c(yaml_list, custom_metadata)
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### Package Installation Errors
-```r
-# Install missing dependencies
-install.packages(c("shiny", "shinyAce", "yaml", "DT"))
-```
-
-#### YAML Validation Errors
-- Check for proper indentation (use spaces, not tabs)
-- Verify special characters are properly quoted
-- Ensure list items are consistently formatted
-
-#### File Upload Issues
-- Verify file extensions (.qmd, .md, .Rmd, .rmd)
-- Check file size limits (30MB maximum)
-- Ensure proper file encoding (UTF-8 recommended)
-
-### Performance Optimization
-- For large files, the application uses streaming file reading
-- YAML generation is optimized for real-time updates
-- Content validation runs asynchronously to maintain UI responsiveness
-
-## 🤝 Contributing
-
-We welcome contributions to improve YAMLGen! Areas for enhancement include:
-
-- **Additional Output Formats**: Support for more document types
-- **Enhanced Validation**: More sophisticated YAML checking
-- **UI Improvements**: Better user experience and accessibility
-- **Performance**: Optimization for larger documents
-- **Documentation**: Expanded user guides and examples
-
-## 📄 License
-
-This project is open source and available under the MIT License. See the LICENSE file for details.
-
-## 🆘 Support
-
-For questions, issues, or feature requests:
-- Create an issue on the GitHub repository
-- Check the documentation in the "Instructions" tab
-- Review the troubleshooting section above
-
-## 🙏 Acknowledgments
-
-- Built with [Shiny](https://shiny.rstudio.com/) web framework
-- YAML processing powered by the [yaml](https://cran.r-project.org/package=yaml) package  
-- Code editing via [shinyAce](https://github.com/trestletech/shinyAce)
-- Inspired by the Quarto and R Markdown ecosystems
-
+Si tienes preguntas, encuentras un error o necesitas ayuda, por favor abre un **Issue** en el repositorio oficial de GitHub.

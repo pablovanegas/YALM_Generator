@@ -1,9 +1,9 @@
 # YALM Generator 🚀
 
-[![Estado del Build](https://img-shields.io/badge/build-passing-brightgreen?style=for-the-badge)](https://github.com)
-[![Licencia: MIT](https://img-shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Versión de R](https://img-shields.io/badge/R-%3E%3D%204.0-blue?style=for-the-badge)](https://www.r-project.org/)
-[![GitHub Stars](https://img-shields.io/github/stars/USUARIO/REPO?style=social)](https://github.com/USUARIO/REPO/stargazers)
+[![Estado del Build](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge)](https://github.com)
+[![Licencia: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Versión de R](https://img.shields.io/badge/R-%3E%3D%204.0-blue?style=for-the-badge)](https://www.r-project.org/)
+[![GitHub Stars](https://img.shields.io/github/stars/USUARIO/REPO?style=social)](https://github.com/USUARIO/REPO/stargazers)
 
 ![YALM Generator Portada](www/portada.jpg)
 
@@ -129,7 +129,7 @@ Este proyecto fue desarrollado como una herramienta para la comunidad de R y Qua
     -   [bslib](https://rstudio.github.io/bslib/): Para la creación de temas modernos.
     -   [shinyjs](https://deanattali.com/shinyjs/): Para ejecutar código JavaScript personalizado.
 
-![Logo UNAL](www/unal.png)
+
 
 ### 🆘 Contacto y Soporte
 

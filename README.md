@@ -3,7 +3,7 @@
 [![Estado del Build](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge)](https://github.com)
 [![Licencia: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Versión de R](https://img.shields.io/badge/R-%3E%3D%204.0-blue?style=for-the-badge)](https://www.r-project.org/)
-[![GitHub Stars](https://img.shields.io/github/stars/USUARIO/REPO?style=social)](https://github.com/USUARIO/REPO/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/pablovanegas/REPO?style=social)](https://github.com/pablovanegas/YALM_Generator)
 
 ![YALM Generator Portada](www/portada.jpg)
 
